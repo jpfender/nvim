@@ -2,3 +2,4 @@
 .swp
 backup
 swp
+plugin/packer_compiled.lua
