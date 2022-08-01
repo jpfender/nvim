@@ -25,3 +25,6 @@ map("n", "<Leader>a", ":Telescope live_grep<CR>", { silent = true })
 
 -- Find in current buffer
 map("n", "<Leader>/", ":Telescope current_buffer_fuzzy_find<CR>", { silent = true })
+
+-- Help pages
+map("n", "<Leader>h", ":Telescope help_tags<CR>", { silent = true })
