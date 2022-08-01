@@ -103,6 +103,15 @@ return require("packer").startup(function(use)
 				show_current_context_start = true,
 				char_highlight_list = { "Comment" },
 				use_treesitter = true,
+				filetype_exclude = {
+					'',
+					'checkhealth',
+					'help',
+					'lspinfo',
+					'man',
+					'packer',
+					'yaml',
+				},
 			})
 		end,
 	})
