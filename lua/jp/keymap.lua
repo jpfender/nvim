@@ -56,8 +56,8 @@ map('n', 'J', 'mzJ`z')
 map("v", "J", ":m '>+1<CR>gv=gv")
 map("v", "K", ":m '<-2<CR>gv=gv")
 
-map('n', '<Leader>j', ':m .+1<CR>==')
-map('n', '<Leader>k', ':m .-2<CR>==')
+map('n', '<Leader>j', ':m .+1<CR>==', { silent = true })
+map('n', '<Leader>k', ':m .-2<CR>==', { silent = true })
 
 -- Easily close tab
 map('n', '<C-x>', ':tabclose<CR>')
