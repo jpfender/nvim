@@ -59,5 +59,6 @@ map("v", "K", ":m '<-2<CR>gv=gv")
 map('n', '<Leader>j', ':m .+1<CR>==', { silent = true })
 map('n', '<Leader>k', ':m .-2<CR>==', { silent = true })
 
--- Easily close tab
-map('n', '<C-x>', ':tabclose<CR>')
+-- Easy tab management
+map('n', '<C-t>', ':tabnew<CR>', { silent = true })
+map('n', '<C-x>', ':tabclose<CR>', { silent = true })
