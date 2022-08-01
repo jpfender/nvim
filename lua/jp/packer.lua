@@ -249,9 +249,9 @@ return require("packer").startup(function(use)
 		end,
 	})
 
-	---------------------------------------------------------------------
-	-- LSP, COMPLETION & SNIPPETS --------------------------------------------
-	---------------------------------------------------------------------
+	----------------------------------------------------------------------------------
+	-- LSP, COMPLETION, SNIPPETS, LINTING --------------------------------------------
+	----------------------------------------------------------------------------------
 
 	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
 	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
@@ -291,12 +291,6 @@ return require("packer").startup(function(use)
 	-- Formatting
 	use("mhartington/formatter.nvim")
 
-	---------------------------------------------------------------------
-	-- UNCLEAR IF NEED --------------------------------------------------
-	---------------------------------------------------------------------
-	-- 'Shougo/context_filetype.vim'
-	-- 'dag/vim-fish'
-	-- quickfix stuff??
-	-- bracketed paste? -> wincent/terminus
-	-- formatting -> neoformat or LSP?
+	-- Linting
+	use("mfussenegger/nvim-lint")
 end)
