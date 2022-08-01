@@ -280,7 +280,13 @@ return require("packer").startup(function(use)
 
 	-- Completion sources:
 	-- Buffer
-	use("hrsh7th/cmp-buffer")
+	use {
+		"hrsh7th/cmp-buffer",
+		get_bufnrs = function()
+			-- Complete from all open buffers
+			return vim.api.nvim_list_bufs()
+		end
+	}
 	-- Path
 	use("hrsh7th/cmp-path")
 	-- Tmux
