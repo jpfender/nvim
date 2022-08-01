@@ -217,15 +217,6 @@ return require("packer").startup(function(use)
 	-- Additional text objects
 	use("wellle/targets.vim")
 
-	-- Strip trailing whitespace
-	-- XXX possibly made redundant by formatter.nvim
-	-- use({
-	--   "mcauley-penney/tidy.nvim",
-	--   config = function()
-	--     require("tidy").setup()
-	--   end
-	-- })
-
 	-- Re-open files at last position
 	use({
 		"ethanholz/nvim-lastplace",
