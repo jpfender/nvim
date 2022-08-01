@@ -104,13 +104,13 @@ return require("packer").startup(function(use)
 				char_highlight_list = { "Comment" },
 				use_treesitter = true,
 				filetype_exclude = {
-					'',
-					'checkhealth',
-					'help',
-					'lspinfo',
-					'man',
-					'packer',
-					'yaml',
+					"",
+					"checkhealth",
+					"help",
+					"lspinfo",
+					"man",
+					"packer",
+					"yaml",
 				},
 			})
 		end,
@@ -145,8 +145,8 @@ return require("packer").startup(function(use)
 	-- Rainbow parentheses
 	use("p00f/nvim-ts-rainbow")
 
-  -- Highlight word under cursor
-  use 'RRethy/vim-illuminate'
+	-- Highlight word under cursor
+	use("RRethy/vim-illuminate")
 
 	---------------------------------------------------------------------
 	-- EDITING ----------------------------------------------------------
@@ -274,13 +274,13 @@ return require("packer").startup(function(use)
 
 	-- Completion sources:
 	-- Buffer
-	use {
+	use({
 		"hrsh7th/cmp-buffer",
 		get_bufnrs = function()
 			-- Complete from all open buffers
 			return vim.api.nvim_list_bufs()
-		end
-	}
+		end,
+	})
 	-- Path
 	use("hrsh7th/cmp-path")
 	-- Tmux
