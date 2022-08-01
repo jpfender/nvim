@@ -22,8 +22,6 @@ require("formatter").setup({
 			require("formatter.filetypes.markdown").prettier,
 		},
 		python = {
-			require("formatter.filetypes.python").yapf,
-			require("formatter.filetypes.python").isort,
 			require("formatter.filetypes.python").black,
 		},
 		rust = {
