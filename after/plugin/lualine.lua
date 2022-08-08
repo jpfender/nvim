@@ -35,7 +35,16 @@ require("lualine").setup({
 	},
 	sections = {
 		lualine_a = { "mode" },
-		lualine_b = { "branch", "diff", "diagnostics" },
+		lualine_b = {
+			{
+				"branch",
+				fmt = function(str)
+					return str:sub(1, vim.fn.winwidth(0) / 6)
+				end,
+			},
+			"diff",
+			"diagnostics",
+		},
 		-- Visually distinguish path and file name
 		lualine_c = {
 			{
