@@ -41,4 +41,4 @@ require("formatter").setup({
 })
 
 -- Format before save
-vim.api.nvim_create_autocmd({ "BufWritePre" }, { command = "FormatWrite" })
+vim.api.nvim_create_autocmd({ "BufWritePost" }, { command = "FormatWriteLock" })
