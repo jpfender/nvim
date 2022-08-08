@@ -1,8 +1,8 @@
 require("filetype").setup({
 	overrides = {
-		extensions = {
-			yml = "yaml.ansible",
-			yaml = "yaml.cloudformation",
-		},
+		complex = {
+			[".*aws/.*yml"] = "yaml.ansible",
+			[".*template_.*yaml"] = "yaml.cloudformation",
+        },
 	},
 })
