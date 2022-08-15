@@ -151,9 +151,6 @@ vim.opt.hlsearch = true
 -- Disable syntax concealing, esp. for markdown files
 vim.opt.conceallevel = 0
 
--- Highlight text on yank
-vim.cmd("au TextYankPost * lua vim.highlight.on_yank({ timeout = 300 })")
-
 -- Automatically reload files if they change on disk
 vim.opt.autoread = true
 vim.cmd("au FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif")
