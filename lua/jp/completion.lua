@@ -97,7 +97,15 @@ cmp.setup({
 	sources = {
 		{ name = "nvim_lsp" },
 		{ name = "luasnip" },
-		{ name = "buffer" },
+		{
+			name = "buffer",
+			option = {
+				-- Complete from all open buffers
+				get_bufnrs = function()
+					return vim.api.nvim_list_bufs()
+				end,
+			},
+		},
 		{ name = "path" },
 		{ name = "tmux" },
 		{ name = "nvim_lua" },
