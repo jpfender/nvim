@@ -9,12 +9,3 @@ augroup highlight_follows_focus
     autocmd WinLeave * set nocursorline
 augroup END
 ]])
-
--- XXX this seems to cause performance issues
--- vim.api.nvim_command([[
--- augroup highlight_follows_vim
---     autocmd FocusGained * set cursorline
---     autocmd FocusGained * set hlsearch
---     autocmd FocusLost   * set nocursorline
--- augroup END
--- ]])
