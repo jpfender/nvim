@@ -5,6 +5,7 @@ require("lint").linters_by_ft = {
 	lua = { "luacheck" },
 	markdown = { "vale" },
 	python = { "pylint", "flake8" },
+	sql = { "sqlfluff" },
 	yaml = { "yamllint" },
 }
 
