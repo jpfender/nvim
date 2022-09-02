@@ -16,6 +16,8 @@ return require("packer").startup(function(use)
 		"nvim-treesitter/nvim-treesitter",
 		run = ":TSUpdate",
 	})
+	use("nvim-treesitter/playground")
+	use("nvim-treesitter/nvim-treesitter-textobjects")
 
 	---------------------------------------------------------------------
 	-- GIT --------------------------------------------------------------
@@ -263,7 +265,6 @@ return require("packer").startup(function(use)
 	use("L3MON4D3/LuaSnip") -- Snippets plugin
 
 	-- Quickfix for LSP
-	-- Lua
 	use({
 		"folke/trouble.nvim",
 		requires = "kyazdani42/nvim-web-devicons",
