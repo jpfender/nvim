@@ -81,7 +81,6 @@ return require("packer").startup(function(use)
 
 	-- colorschemes
 	use("RRethy/nvim-base16")
-	use("folke/tokyonight.nvim")
 
 	-- Better highlighting of search results
 	use("wincent/loupe")
