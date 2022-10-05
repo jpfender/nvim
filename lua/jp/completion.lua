@@ -58,6 +58,11 @@ local luasnip = require("luasnip")
 -- VSCode-like symbols
 local lspkind = require("lspkind")
 
+-- groovyls setup
+require("lspconfig").groovyls.setup({
+	cmd = { "java", "-jar", "/Users/jp/groovy-language-server/build/libs/groovy-language-server-all.jar" },
+})
+
 -- nvim-cmp setup
 local cmp = require("cmp")
 local cmp_buffer = require("cmp_buffer")
