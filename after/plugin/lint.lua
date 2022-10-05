@@ -1,6 +1,7 @@
 -- Select linter by filetype
 require("lint").linters_by_ft = {
 	cloudformation = { "cfn_lint" },
+	gitcommit = { "commitlint" },
 	groovy = { "npm-groovy-lint" },
 	javascript = { "eslint" },
 	lua = { "luacheck" },
