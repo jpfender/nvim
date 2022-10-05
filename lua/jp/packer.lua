@@ -81,6 +81,9 @@ return require("packer").startup(function(use)
 
 	-- colorschemes
 	use("RRethy/nvim-base16")
+	use({ "shaunsingh/oxocarbon.nvim", run = "./install.sh" })
+	use { "catppuccin/nvim", as = "catppuccin" }
+	use 'folke/tokyonight.nvim'
 
 	-- Better highlighting of search results
 	use("wincent/loupe")
