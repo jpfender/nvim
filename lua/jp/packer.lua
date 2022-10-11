@@ -127,7 +127,6 @@ return require("packer").startup(function(use)
 					"lspinfo",
 					"man",
 					"packer",
-					"yaml",
 				},
 				context_patterns = {
 					"class",
