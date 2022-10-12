@@ -40,3 +40,6 @@ require("nvim-treesitter.configs").setup({
 		},
 	},
 })
+
+-- Highlight function arguments
+require("hlargs").setup()

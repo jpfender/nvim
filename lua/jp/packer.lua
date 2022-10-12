@@ -192,6 +192,12 @@ return require("packer").startup(function(use)
 	-- Devicons
 	use("kyazdani42/nvim-web-devicons")
 
+	-- Highlight function arguments
+	use({
+		"m-demare/hlargs.nvim",
+		requires = { "nvim-treesitter/nvim-treesitter" },
+	})
+
 	---------------------------------------------------------------------
 	-- EDITING ----------------------------------------------------------
 	---------------------------------------------------------------------
