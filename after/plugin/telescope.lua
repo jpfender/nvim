@@ -14,6 +14,9 @@ require("telescope").setup({
 -- Use fzf sorter
 require("telescope").load_extension("fzf")
 
+-- Repository switcher
+require("telescope").load_extension("repo")
+
 -- Find files
 map("n", "<Leader>t", ":Telescope find_files<CR>", { silent = true })
 
