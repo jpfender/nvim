@@ -322,6 +322,11 @@ return require("packer").startup(function(use)
 	-- VSCode-like symbols
 	use("onsails/lspkind.nvim")
 
+	-- Show function signature while typing
+	use({
+		"ray-x/lsp_signature.nvim",
+	})
+
 	-- Completion sources:
 	-- Buffer
 	use("hrsh7th/cmp-buffer")

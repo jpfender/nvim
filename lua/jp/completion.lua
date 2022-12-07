@@ -83,6 +83,9 @@ require("lspconfig").groovyls.setup({
 	cmd = { "java", "-jar", "/Users/jp/groovy-language-server/build/libs/groovy-language-server-all.jar" },
 })
 
+-- Enable LSP-signature
+require("lsp_signature").setup({})
+
 -- nvim-cmp setup
 local cmp = require("cmp")
 local cmp_buffer = require("cmp_buffer")
