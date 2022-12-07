@@ -1,5 +1,5 @@
 -- Italicize comments
-vim.highlight.create("Comment", { cterm = "italic", gui = "italic" }, false)
+vim.api.nvim_set_hl(0, "Comment", { italic = true })
 
 vim.g.catppuccin_flavour = "mocha" -- latte, frappe, macchiato, mocha
 
