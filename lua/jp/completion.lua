@@ -63,6 +63,7 @@ local servers = {
 	"pyright",
 	"rust_analyzer",
 	"tsserver",
+	"yamlls",
 }
 for _, lsp in ipairs(servers) do
 	lspconfig[lsp].setup({
