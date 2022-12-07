@@ -24,6 +24,26 @@ local on_attach = function(client, bufnr)
 
 	-- Use illuminate to highlight word under cursor
 	require("illuminate").on_attach(client)
+
+	-- Show type annotations as virtual text
+	if client.server_capabilities.code_lens then
+		local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
+		vim.api.nvim_create_autocmd({ "BufEnter" }, {
+			group = codelens,
+			callback = function()
+				vim.lsp.codelens.refresh()
+			end,
+			buffer = bufnr,
+			once = true,
+		})
+		vim.api.nvim_create_autocmd({ "BufWritePost", "CursorHold" }, {
+			group = codelens,
+			callback = function()
+				vim.lsp.codelens.refresh()
+			end,
+			buffer = bufnr,
+		})
+	end
 end
 
 -- Add additional capabilities supported by nvim-cmp
