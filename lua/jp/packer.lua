@@ -341,5 +341,7 @@ return require("packer").startup(function(use)
 	use("mhartington/formatter.nvim")
 
 	-- Linting
-	use("mfussenegger/nvim-lint")
+	use({
+		"mfussenegger/nvim-lint",
+	})
 end)
