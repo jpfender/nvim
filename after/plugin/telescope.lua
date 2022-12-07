@@ -9,6 +9,19 @@ require("telescope").setup({
 			},
 		},
 	},
+	extensions = {
+		repo = {
+			list = {
+				search_dirs = {
+					"~/sio/cfg_mgmt",
+					"~/sio/dp/",
+					"~/sio/cst/",
+					"~/.config/nvim",
+					"~/dotfiles",
+				},
+			},
+		},
+	},
 })
 
 -- Use fzf sorter
@@ -31,3 +44,6 @@ map("n", "<Leader>/", ":Telescope current_buffer_fuzzy_find<CR>", { silent = tru
 
 -- Help pages
 map("n", "<Leader>h", ":Telescope help_tags<CR>", { silent = true })
+
+-- Switch repos
+map("n", "<Leader>r", ":Telescope repo list<CR>", { silent = true })
