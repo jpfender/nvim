@@ -63,7 +63,7 @@ require("lualine").setup({
 				end,
 			},
 		},
-		lualine_x = { "encoding", "fileformat", "filetype" },
+		lualine_x = { { "pipenv", icon = "" }, "encoding", "fileformat", "filetype" },
 		lualine_y = { "progress" },
 		lualine_z = { "location" },
 	},

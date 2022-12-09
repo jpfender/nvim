@@ -287,6 +287,9 @@ return require("packer").startup(function(use)
 	-- Detect filetype
 	use("nathom/filetype.nvim")
 
+	-- Automatically switch pipenvs
+	use("jpfender/pipenv.nvim")
+
 	---------------------------------------------------------------------
 	-- STARTUP ----------------------------------------------------------
 	---------------------------------------------------------------------
