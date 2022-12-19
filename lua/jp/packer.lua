@@ -286,7 +286,10 @@ return require("packer").startup(function(use)
 	use("nathom/filetype.nvim")
 
 	-- Automatically switch pipenvs
-	use("jpfender/pipenv.nvim")
+	use({
+		"jpfender/pipenv.nvim",
+		requires = "nvim-lua/plenary.nvim",
+	})
 
 	---------------------------------------------------------------------
 	-- STARTUP ----------------------------------------------------------
