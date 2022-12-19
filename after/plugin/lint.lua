@@ -1,5 +1,6 @@
 -- Select linter by filetype
 require("lint").linters_by_ft = {
+	ansible = { "ansible_lint" },
 	cloudformation = { "cfn_lint", "cfn_nag" },
 	gitcommit = { "commitlint" },
 	groovy = { "npm-groovy-lint" },
