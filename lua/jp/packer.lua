@@ -185,9 +185,6 @@ return require("packer").startup(function(use)
 	-- Highlight word under cursor
 	use("RRethy/vim-illuminate")
 
-	-- Highlight yanked region
-	use("machakann/vim-highlightedyank")
-
 	-- Devicons
 	use("kyazdani42/nvim-web-devicons")
 
