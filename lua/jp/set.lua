@@ -1,5 +1,3 @@
-local prefix = vim.env.XDG_CONFIG_HOME or vim.fn.expand("~/.config")
-
 -- Make Vim use zsh as its builtin shell, as fish doesn't support all of the fancy stuff some
 -- extensions want it to do
 vim.opt.shell = "/bin/zsh"
@@ -12,6 +10,7 @@ vim.opt.ruler = true
 
 -- Undo and backup
 vim.opt.undofile = true
+vim.opt.undodir = os.getenv("HOME") .. "/.local/share/nvim/undo//"
 vim.opt.backup = true
 vim.opt.backupdir = os.getenv("HOME") .. "/.local/share/nvim/backup//"
 
@@ -109,6 +108,7 @@ vim.opt.showmode = true
 -- Replace tabs with spaces
 vim.opt.expandtab = true
 vim.opt.tabstop = 4
+vim.opt.softtabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Don't autoinsert two spaces after '.', '?', '!' for join command
@@ -154,3 +154,12 @@ vim.opt.conceallevel = 0
 -- Automatically reload files if they change on disk
 vim.opt.autoread = true
 vim.cmd("au FocusGained,BufEnter,CursorHold,CursorHoldI * if mode() != 'c' | checktime | endif")
+
+-- Be smart about indentation
+vim.opt.smartindent = true
+
+-- Use termguicolors
+vim.opt.termguicolors = true
+
+-- Faster update time
+vim.opt.updatetime = 50
