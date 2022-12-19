@@ -1,8 +1,36 @@
--- Helper function to avoid boilerplate stuff
-function map(mode, lhs, rhs, opts)
-  local options = {noremap = true}
-  if opts then options = vim.tbl_extend('force', options, opts) end
-  vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+local should_profile = os.getenv("NVIM_PROFILE")
+if should_profile then
+	require("profile").instrument_autocmds()
+	if should_profile:lower():match("^start") then
+		require("profile").start("*")
+	else
+		require("profile").instrument("*")
+	end
 end
 
-require('jp')
+local function toggle_profile()
+	local prof = require("profile")
+	if prof.is_recording() then
+		prof.stop()
+		vim.ui.input({ prompt = "Save profile to:", completion = "file", default = "profile.json" }, function(filename)
+			if filename then
+				prof.export(filename)
+				vim.notify(string.format("Wrote %s", filename))
+			end
+		end)
+	else
+		prof.start("*")
+	end
+end
+vim.keymap.set("", "<f1>", toggle_profile)
+
+-- Helper function to avoid boilerplate stuff
+function map(mode, lhs, rhs, opts)
+	local options = { noremap = true }
+	if opts then
+		options = vim.tbl_extend("force", options, opts)
+	end
+	vim.api.nvim_set_keymap(mode, lhs, rhs, options)
+end
+
+require("jp")
