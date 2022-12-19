@@ -1,6 +1,9 @@
 -- Utilities for creating configurations
 local util = require("formatter.util")
 
+local autocmd = vim.api.nvim_create_autocmd
+local augroup = vim.api.nvim_create_augroup
+
 -- Provides the Format and FormatWrite commands
 require("formatter").setup({
 	logging = true,
@@ -31,15 +34,16 @@ require("formatter").setup({
 		yaml = {
 			require("formatter.filetypes.yaml").prettier,
 		},
-
-		-- Remove trailing whitespace
-		["*"] = {
-			function()
-				return { exe = "sed", args = { "-i", "''", "'s/[	 ]*$//'" } }
-			end,
-		},
 	},
 })
 
--- Format before save
-vim.api.nvim_create_autocmd({ "BufWritePost" }, { command = "FormatWriteLock" })
+-- Remove trailing whitespace before saving
+local whitespace_group = augroup("whitespace_group", {})
+autocmd({ "BufWritePre" }, {
+	group = whitespace_group,
+	pattern = "*",
+	command = [[%s/\s\+$//e]],
+})
+
+-- Format
+autocmd({ "BufWritePost" }, { command = "FormatWriteLock" })
