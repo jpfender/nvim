@@ -305,11 +305,28 @@ return require("packer").startup(function(use)
 	-- LSP, COMPLETION, SNIPPETS, LINTING --------------------------------------------
 	----------------------------------------------------------------------------------
 
-	use("neovim/nvim-lspconfig") -- Configurations for Nvim LSP
-	use("hrsh7th/nvim-cmp") -- Autocompletion plugin
-	use("hrsh7th/cmp-nvim-lsp") -- LSP source for nvim-cmp
-	use("saadparwaiz1/cmp_luasnip") -- Snippets source for nvim-cmp
-	use("L3MON4D3/LuaSnip") -- Snippets plugin
+	-- Out-of-the-box LSP setup
+	use({
+		"VonHeikemen/lsp-zero.nvim",
+		requires = {
+			-- LSP Support
+			{ "neovim/nvim-lspconfig" },
+			{ "williamboman/mason.nvim" },
+			{ "williamboman/mason-lspconfig.nvim" },
+
+			-- Autocompletion
+			{ "hrsh7th/nvim-cmp" },
+			{ "hrsh7th/cmp-buffer" },
+			{ "hrsh7th/cmp-path" },
+			{ "saadparwaiz1/cmp_luasnip" },
+			{ "hrsh7th/cmp-nvim-lsp" },
+			{ "hrsh7th/cmp-nvim-lua" },
+
+			-- Snippets
+			{ "L3MON4D3/LuaSnip" },
+			{ "rafamadriz/friendly-snippets" },
+		},
+	})
 
 	-- Quickfix for LSP
 	use({
@@ -328,15 +345,8 @@ return require("packer").startup(function(use)
 		"ray-x/lsp_signature.nvim",
 	})
 
-	-- Completion sources:
-	-- Buffer
-	use("hrsh7th/cmp-buffer")
-	-- Path
-	use("hrsh7th/cmp-path")
-	-- Tmux
+	-- Use tmux as a completion source
 	use("andersevenrud/cmp-tmux")
-	-- Neovim Lua API
-	use("hrsh7th/cmp-nvim-lua")
 
 	-- Formatting
 	use("mhartington/formatter.nvim")

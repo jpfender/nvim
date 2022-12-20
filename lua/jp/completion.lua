@@ -1,76 +1,13 @@
--- Use an on_attach function to only map the following keys
--- after the language server attaches to the current buffer
-local on_attach = function(client, bufnr)
-	-- Enable completion triggered by <c-x><c-o>
-	vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+local lsp = require("lsp-zero")
 
-	-- Mappings.
-	-- See `:help vim.lsp.*` for documentation on any of the below functions
-	local bufopts = { noremap = true, silent = true, buffer = bufnr }
-	vim.keymap.set("n", "gD", vim.lsp.buf.declaration, bufopts)
-	vim.keymap.set("n", "gd", vim.lsp.buf.definition, bufopts)
-	vim.keymap.set("n", "K", vim.lsp.buf.hover, bufopts)
-	vim.keymap.set("n", "gi", vim.lsp.buf.implementation, bufopts)
-	vim.keymap.set("n", "<Leader>wa", vim.lsp.buf.add_workspace_folder, bufopts)
-	vim.keymap.set("n", "<Leader>wr", vim.lsp.buf.remove_workspace_folder, bufopts)
-	vim.keymap.set("n", "<Leader>wl", function()
-		print(vim.inspect(vim.lsp.buf.list_workspace_folders()))
-	end, bufopts)
-	vim.keymap.set("n", "<Leader>D", vim.lsp.buf.type_definition, bufopts)
-	vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, bufopts)
-	vim.keymap.set("n", "<Leader>ca", vim.lsp.buf.code_action, bufopts)
-	vim.keymap.set("n", "gr", vim.lsp.buf.references, bufopts)
-	vim.keymap.set("n", "<Leader>f", vim.lsp.buf.formatting, bufopts)
+lsp.preset("recommended")
+lsp.nvim_workspace()
 
-	-- Use illuminate to highlight word under cursor
-	require("illuminate").on_attach(client)
+lsp.on_attach(function(client, bufnr)
+	local opts = { buffer = bufnr, remap = false }
 
-	-- Show type annotations as virtual text
-	if client.server_capabilities.code_lens then
-		local codelens = vim.api.nvim_create_augroup("LSPCodeLens", { clear = true })
-		vim.api.nvim_create_autocmd({ "BufEnter" }, {
-			group = codelens,
-			callback = function()
-				vim.lsp.codelens.refresh()
-			end,
-			buffer = bufnr,
-			once = true,
-		})
-		vim.api.nvim_create_autocmd({ "BufWritePost", "CursorHold" }, {
-			group = codelens,
-			callback = function()
-				vim.lsp.codelens.refresh()
-			end,
-			buffer = bufnr,
-		})
-	end
-end
-
--- Add additional capabilities supported by nvim-cmp
-local capabilities = require("cmp_nvim_lsp").default_capabilities()
-capabilities.textDocument.completion.completionItem.snippetSupport = true
-
-local lspconfig = require("lspconfig")
-
--- Enable some language servers with the additional completion capabilities offered by nvim-cmp
-local servers = {
-	-- "ansiblels",
-	"bashls",
-	"clangd",
-	"dockerls",
-	"eslint",
-	"jsonls",
-	"pyright",
-	"rust_analyzer",
-	"tsserver",
-	"yamlls",
-}
-for _, lsp in ipairs(servers) do
-	lspconfig[lsp].setup({
-		on_attach = on_attach,
-		capabilities = capabilities,
-	})
-end
+	vim.keymap.set("n", "<Leader>rn", vim.lsp.buf.rename, opts)
+end)
 
 -- luasnip setup
 local luasnip = require("luasnip")
@@ -78,55 +15,38 @@ local luasnip = require("luasnip")
 -- VSCode-like symbols
 local lspkind = require("lspkind")
 
--- groovyls setup
-require("lspconfig").groovyls.setup({
-	cmd = { "java", "-jar", "/Users/jp/groovy-language-server/build/libs/groovy-language-server-all.jar" },
-})
-
 -- Enable LSP-signature
 require("lsp_signature").setup({})
 
 -- nvim-cmp setup
 local cmp = require("cmp")
 local cmp_buffer = require("cmp_buffer")
-cmp.setup({
-	snippet = {
-		expand = function(args)
-			luasnip.lsp_expand(args.body)
-		end,
+
+local cmp_mappings = lsp.defaults.cmp_mappings({
+	-- Automatically insert completions into buffer when I start pressing tab
+	["<Tab>"] = cmp.mapping(function(fallback)
+		if cmp.visible() then
+			cmp.select_next_item()
+		elseif luasnip.expand_or_jumpable() then
+			luasnip.expand_or_jump()
+		else
+			fallback()
+		end
+	end, { "i", "s" }),
+})
+
+lsp.setup_nvim_cmp({
+	mapping = cmp_mappings,
+	-- Always show menu, do not autoselect first item
+	completion = {
+		completeopt = "menuone,noselect,noinsert",
 	},
-	mapping = cmp.mapping.preset.insert({
-		["<C-d>"] = cmp.mapping.scroll_docs(-4),
-		["<C-f>"] = cmp.mapping.scroll_docs(4),
-		["<C-Space>"] = cmp.mapping.complete(),
-		["<CR>"] = cmp.mapping.confirm({
-			behavior = cmp.ConfirmBehavior.Replace,
-			select = false, -- Don't insert first result on CR
-		}),
-		["<Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_next_item()
-			elseif luasnip.expand_or_jumpable() then
-				luasnip.expand_or_jump()
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-		["<S-Tab>"] = cmp.mapping(function(fallback)
-			if cmp.visible() then
-				cmp.select_prev_item()
-			elseif luasnip.jumpable(-1) then
-				luasnip.jump(-1)
-			else
-				fallback()
-			end
-		end, { "i", "s" }),
-	}),
 	sources = {
-		{ name = "nvim_lsp" },
-		{ name = "luasnip" },
+		{ name = "path" },
+		{ name = "nvim_lsp", keyword_length = 3 },
 		{
 			name = "buffer",
+			keyword_length = 3,
 			option = {
 				-- Complete from all open buffers
 				get_bufnrs = function()
@@ -134,9 +54,8 @@ cmp.setup({
 				end,
 			},
 		},
-		{ name = "path" },
 		{ name = "tmux" },
-		{ name = "nvim_lua" },
+		{ name = "luasnip", keyword_length = 2 },
 	},
 	-- Configure lspkind
 	formatting = {
@@ -159,4 +78,10 @@ cmp.setup({
 			end,
 		},
 	},
+})
+
+lsp.setup()
+
+vim.diagnostic.config({
+	virtual_text = true,
 })
