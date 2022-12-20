@@ -61,3 +61,6 @@ map("n", "<Leader>k", ":m .-2<CR>==", { silent = true })
 
 -- Easy tab management
 map("n", "<C-t>", ":tabnew<CR>", { silent = true })
+
+-- Format buffer
+map("n", "<Leader>f", "<cmd>lua vim.lsp.buf.format()<CR>")
