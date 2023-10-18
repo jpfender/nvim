@@ -22,3 +22,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.api.nvim_buf_set_option(0, "filetype", "yaml.ansible")
   end,
 })
+
+-- cfn filetype
+vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
+  group = augroup("filetype_cfn"),
+  pattern = { "*template_*.yaml" },
+  callback = function()
+    vim.api.nvim_buf_set_option(0, "filetype", "yaml.cfn")
+  end,
+})
