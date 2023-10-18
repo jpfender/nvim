@@ -113,3 +113,58 @@ map(
   ":lua require('refactoring').debug.cleanup({})<CR>",
   { noremap = true, desc = "Debug: Clean up" }
 )
+
+-- Telescope undo
+map("n", "<leader>cu", "<cmd>Telescope undo<cr>", { noremap = true, desc = "Telescope undo" })
+
+-- Tmux navigation
+map(
+  "n",
+  "<C-h>",
+  "<cmd>lua require('tmux').move_left()<cr>",
+  { noremap = true, silent = true, desc = "Tmux navigate left" }
+)
+map(
+  "n",
+  "<C-j>",
+  "<cmd>lua require('tmux').move_bottom()<cr>",
+  { noremap = true, silent = true, desc = "Tmux navigate down" }
+)
+map(
+  "n",
+  "<C-k>",
+  "<cmd>lua require('tmux').move_top()<cr>",
+  { noremap = true, silent = true, desc = "Tmux navigate up" }
+)
+map(
+  "n",
+  "<C-l>",
+  "<cmd>lua require('tmux').move_right()<cr>",
+  { noremap = true, silent = true, desc = "Tmux navigate right" }
+)
+
+-- Tmux resizing
+map(
+  "n",
+  "<A-h>",
+  "<cmd>lua require('tmux').resize_left()<cr>",
+  { noremap = true, silent = true, desc = "Tmux resize left" }
+)
+map(
+  "n",
+  "<A-j>",
+  "<cmd>lua require('tmux').resize_bottom()<cr>",
+  { noremap = true, silent = true, desc = "Tmux resize down" }
+)
+map(
+  "n",
+  "<A-k>",
+  "<cmd>lua require('tmux').resize_top()<cr>",
+  { noremap = true, silent = true, desc = "Tmux resize up" }
+)
+map(
+  "n",
+  "<A-l>",
+  "<cmd>lua require('tmux').resize_right()<cr>",
+  { noremap = true, silent = true, desc = "Tmux resize right" }
+)
