@@ -2,12 +2,12 @@ return {
   "aserowy/tmux.nvim",
   opts = {
     navigation = {
-      -- enables default keybindings (C-hjkl) for normal mode
-      enable_default_keybindings = true,
+      -- Key bindings are explicitly set in keymaps.lua
+      enable_default_keybindings = false,
     },
     resize = {
-      -- enables default keybindings (A-hjkl) for normal mode
-      enable_default_keybindings = true,
+      -- Key bindings are explicitly set in keymaps.lua
+      enable_default_keybindings = false,
     },
   },
 }
