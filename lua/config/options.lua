@@ -15,3 +15,6 @@ opt.wrap = true -- Enable line wrap
 -- F - Suppress "file written" messages
 -- s - No "search hit BOTTOM, continuing at TOP" messages
 opt.shortmess:append({ s = true, A = true, F = true })
+
+-- Persist undos
+opt.undofile = true
