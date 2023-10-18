@@ -4,12 +4,25 @@ return {
     "williamboman/mason.nvim",
     opts = {
       ensure_installed = {
+        "ansible-lint",
+        "black",
+        "cfn-lint",
+        "fixjson",
         "flake8",
-        "prettierd",
+        "groovy-language-server",
+        "hadolint",
+        "isort",
+        "jsonlint",
+        "luacheck",
+        "markdownlint",
+        "prettier",
+        "pydocstyle",
         "pyright",
         "shellcheck",
         "shfmt",
         "stylua",
+        "taplo",
+        "yamllint",
       },
       diagnostics = {
         underline = true,
@@ -23,15 +36,6 @@ return {
         },
         severity_sort = true,
       },
-    },
-  },
-  -- add symbols-outline
-  {
-    "simrat39/symbols-outline.nvim",
-    cmd = "SymbolsOutline",
-    keys = { { "<leader>cs", "<cmd>SymbolsOutline<cr>", desc = "Symbols Outline" } },
-    opts = {
-      position = "right",
     },
   },
 }
