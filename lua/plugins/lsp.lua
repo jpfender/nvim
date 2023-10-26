@@ -7,6 +7,7 @@ return {
         "ansible-lint",
         "black",
         "cfn-lint",
+        "commitlint",
         "fixjson",
         "flake8",
         "groovy-language-server",
