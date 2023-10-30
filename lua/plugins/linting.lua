@@ -17,7 +17,10 @@ return {
       })
       opts.linters = vim.tbl_extend("force", opts.linters, {
         sqlfluff = {
+          cmd = "pipenv",
           args = {
+            "run",
+            "sqlfluff",
             "lint",
             "--format=json",
             "--dialect=redshift",
