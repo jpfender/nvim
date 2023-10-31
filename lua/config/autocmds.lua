@@ -31,3 +31,12 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
     vim.api.nvim_buf_set_option(0, "filetype", "yaml.cfn")
   end,
 })
+
+-- sqlfluff format
+vim.api.nvim_create_autocmd("BufWritePost", {
+  group = augroup("sqlfluff"),
+  pattern = { "*.sql" },
+  callback = function()
+    vim.fn.jobstart("pipenv run sqlfluff format " .. vim.api.nvim_buf_get_name(0))
+  end,
+})

@@ -7,25 +7,9 @@ return {
         markdown = { "markdownlint" },
         python = { "isort", "black" }, -- TODO: Revisit ruff
         sh = { "shfmt" },
-        -- TODO: sqlfluff
-        sql = { "sqlfluff" },
         terraform = { "terraform_fmt" },
         toml = { "taplo" },
       })
-      opts.formatters = vim.tbl_extend("force", opts.formatters, {
-        sqlfluff = {
-          command = "pipenv",
-          args = {
-            "run",
-            "sqlfluff",
-            "format",
-            "$FILENAME",
-            "--dialect=redshift",
-            "--templater=dbt",
-          },
-        },
-      })
-      opts.format.async = true
     end,
   },
 }
