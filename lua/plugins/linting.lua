@@ -6,7 +6,6 @@ return {
         ansible = { "ansible_lint" },
         cfn = { "cfn_lint", "cfn_nag" }, -- TODO: Set cfn ft in autocmds.lua
         gitcommit = { "commitlint" },
-        groovy = { "npm-groovy-lint" },
         json = { "jsonlint" },
         lua = { "luacheck" },
         -- TODO: Checkmake for Makefiles?
