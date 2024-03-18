@@ -11,21 +11,7 @@ return {
         -- TODO: Checkmake for Makefiles?
         python = { "pydocstyle", "pylint" },
         sh = { "shellcheck" },
-        sql = { "sqlfluff" },
         yaml = { "yamllint" },
-      })
-      opts.linters = vim.tbl_extend("force", opts.linters, {
-        sqlfluff = {
-          cmd = "pipenv",
-          args = {
-            "run",
-            "sqlfluff",
-            "lint",
-            "--format=json",
-            "--dialect=redshift",
-            "--templater=dbt",
-          },
-        },
       })
     end,
   },
