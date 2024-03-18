@@ -37,6 +37,12 @@ return {
         },
         severity_sort = true,
       },
+      codelens = {
+        enabled = true,
+      },
+      inlay_hints = {
+        enabled = true,
+      },
     },
   },
 }
