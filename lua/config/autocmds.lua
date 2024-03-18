@@ -14,15 +14,6 @@ vim.api.nvim_create_autocmd("BufEnter", {
   end,
 })
 
--- yaml.ansible filetype
-vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
-  group = augroup("filetype_ansible"),
-  pattern = { "*aws/*yml" },
-  callback = function()
-    vim.api.nvim_buf_set_option(0, "filetype", "yaml.ansible")
-  end,
-})
-
 -- cfn filetype
 vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
   group = augroup("filetype_cfn"),
