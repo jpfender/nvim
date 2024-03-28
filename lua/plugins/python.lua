@@ -2,7 +2,7 @@ return {
   {
     "neovim/nvim-lspconfig",
     opts = function(_, opts)
-      opts.servers.pyright = {
+      opts.servers.basedpyright = {
         -- Make sure pyright uses pyproject.toml as the root indicator
         -- Otherwise it will use the nearest Pipfile, which will mess up LazyVim's root
         root_dir = function(fname)
@@ -14,6 +14,9 @@ return {
             or util.find_git_ancestor(fname)
             or util.path.dirname(fname)
         end,
+      }
+      opts.servers.pyright = {
+        enabled = false,
       }
     end,
   },
