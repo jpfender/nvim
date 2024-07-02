@@ -10,7 +10,7 @@ return {
   -- then: setup supertab in cmp
   {
     "hrsh7th/nvim-cmp",
-    dependencies = { "andersevenrud/cmp-tmux" },
+    dependencies = { "andersevenrud/cmp-tmux", "hrsh7th/cmp-buffer" },
     ---@param opts cmp.ConfigSchema
     opts = function(_, opts)
       local has_words_before = function()
@@ -52,15 +52,16 @@ return {
         completeopt = "menu,menuone,noselect,noinsert",
       }
 
-      opts.sources = cmp.config.sources({
+      opts.sources = cmp.config.sources(vim.list_extend(opts.sources, {
         -- Completions from LSP
         { name = "nvim_lsp" },
         -- Snippets
         { name = "luasnip" },
+        -- Complete from databases
+        { name = "vim-dadbod-completion" },
         -- Complete from all open buffers
         {
           name = "buffer",
-          keyword_length = 3,
           option = {
             get_bufnrs = function()
               return vim.api.nvim_list_bufs()
@@ -71,7 +72,7 @@ return {
         { name = "path" },
         -- Complete from visible tmux panes
         { name = "tmux" },
-      })
+      }))
     end,
   },
 }
