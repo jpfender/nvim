@@ -14,6 +14,11 @@ return {
             or util.find_git_ancestor(fname)
             or util.path.dirname(fname)
         end,
+        settings = {
+          basedpyright = {
+            typeCheckingMode = "standard",
+          },
+        },
       }
       opts.servers.pyright = {
         enabled = false,
