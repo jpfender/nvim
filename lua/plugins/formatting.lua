@@ -6,7 +6,7 @@ return {
         lua = { "stylua" },
         python = { "ruff_fix", "black" },
         sh = { "shfmt" },
-        -- sql = { "sqlfluff" },
+        sql = {},
         terraform = { "terraform_fmt" },
         toml = { "taplo" },
       })
