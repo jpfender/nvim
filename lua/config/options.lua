@@ -18,6 +18,3 @@ opt.shortmess:append({ s = true, A = true, F = true })
 
 -- Persist undos
 opt.undofile = true
-
--- Use ruff-lsp
-vim.g.lazyvim_python_ruff = "ruff_lsp"
