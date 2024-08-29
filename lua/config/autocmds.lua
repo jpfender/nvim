@@ -40,3 +40,14 @@ vim.api.nvim_create_autocmd("BufWritePost", {
     vim.fn.jobstart("pipenv run sqlfluff format " .. vim.api.nvim_buf_get_name(0))
   end,
 })
+
+-- Autosave Obsidian notes on insert leave
+vim.api.nvim_create_autocmd({ "InsertLeave", "TextChanged" }, {
+  group = augroup("obsidian"),
+  pattern = { "*/Obsidian Vault/*" },
+  callback = function()
+    if #vim.api.nvim_buf_get_name(0) ~= 0 and vim.bo.buflisted then
+      vim.cmd("silent w")
+    end
+  end,
+})

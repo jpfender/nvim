@@ -85,3 +85,17 @@ map(
   "<cmd>lua require('tmux').resize_right()<cr>",
   { noremap = true, silent = true, desc = "Tmux resize right" }
 )
+
+-- Obsidian Daily Note
+map(
+  "n",
+  "<leader>no",
+  "<cmd>exe 'e ~/Documents/Obsidian Vault/'.strftime('%Y-%m-%d').'.md'<cr>",
+  { noremap = true, silent = true, desc = "Open Obsidian daily note" }
+)
+map(
+  "n",
+  "<leader>ns",
+  "<cmd>exe 'vsplit ~/Documents/Obsidian Vault/'.strftime('%Y-%m-%d').'.md'<cr>",
+  { noremap = true, silent = true, desc = "Open Obsidian daily note in split" }
+)
