@@ -1,0 +1,20 @@
+{
+  "cte": {
+    "prefix": "cte",
+    "body": ["${1:name} as (", "    ${2:contents}", "),"]
+  },
+  "select": {
+    "prefix": "sl",
+    "body": ["select", "    ${1:attributes}", "from ${2:reference}"]
+  },
+  "select-with-limit": {
+    "prefix": "slim",
+    "body": [
+      "select",
+      "    ${1:attributes}",
+      "from ${2:reference}",
+      "limit ${3:11}",
+      ";"
+    ]
+  }
+}
