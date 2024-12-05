@@ -8,6 +8,7 @@ return {
             yaml = {
               customTags = {
                 "!GetAtt",
+                "!If",
                 "!Ref",
                 "!Sub",
               },
