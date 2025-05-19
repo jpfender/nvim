@@ -1,3 +1,8 @@
+-- disable neogit
+if true then
+  return {}
+end
+
 return {
   "NeogitOrg/neogit",
   cmd = "Neogit",
