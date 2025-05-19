@@ -1,3 +1,8 @@
+-- disable telescope
+if true then
+  return {}
+end
+
 return {
   {
     "telescope.nvim",

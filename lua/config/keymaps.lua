@@ -31,9 +31,6 @@ map("n", "_", 'v:count == 0 ? "<C-W>s<C-W><Down>"  : ":<C-U>normal! ".v:count."_
 -- Easily maximize splits
 map("n", "<C-w>m", "<C-w>_<C-w>|")
 
--- Telescope undo
-map("n", "<leader>cu", "<cmd>Telescope undo<cr>", { noremap = true, desc = "Telescope undo" })
-
 -- Tmux navigation
 map(
   "n",

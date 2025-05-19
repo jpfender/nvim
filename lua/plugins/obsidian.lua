@@ -21,6 +21,9 @@ return {
         enable = false,
       },
       mappings = {},
+      picker = {
+        name = "snacks.pick",
+      },
 
       -- Optional, customize how note IDs are generated given an optional title.
       ---@param title string|?
