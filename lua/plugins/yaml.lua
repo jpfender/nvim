@@ -7,6 +7,7 @@ return {
           settings = {
             yaml = {
               customTags = {
+                "!Equals",
                 "!GetAtt",
                 "!If",
                 "!Ref",
