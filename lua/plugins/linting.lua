@@ -10,7 +10,7 @@ return {
         json = { "jsonlint" },
         lua = { "luacheck" },
         -- TODO: Checkmake for Makefiles?
-        python = { "pydocstyle", "pylint" },
+        python = { "pylint" },
         sh = { "shellcheck" },
         yaml = { "yamllint" },
       })
