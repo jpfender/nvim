@@ -20,7 +20,6 @@ return {
       ui = {
         enable = false,
       },
-      mappings = {},
       picker = {
         name = "snacks.pick",
       },
@@ -66,7 +65,7 @@ return {
       },
 
       -- Force Obsidian to foreground when opening a note
-      open_app_foreground = true,
+      -- open_app_foreground = true,
     },
     keys = {
       -- Daily notes
