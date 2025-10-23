@@ -1,7 +1,7 @@
 return {
   -- Default language servers
   {
-    "williamboman/mason.nvim",
+    "mason-org/mason.nvim",
     opts = {
       ensure_installed = {
         "ansible-lint",
@@ -10,7 +10,6 @@ return {
         "commitlint",
         "fixjson",
         "flake8",
-        "groovy-language-server",
         "hadolint",
         "isort",
         "jsonlint",
