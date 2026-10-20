@@ -6,12 +6,10 @@ local function augroup(name)
   return vim.api.nvim_create_augroup("jp_" .. name, { clear = true })
 end
 
--- Automatically switch to correct pipenv for buffer
-vim.api.nvim_create_autocmd("BufEnter", {
-  group = augroup("pipenv"),
-  callback = function()
-    require("pipenv").set_pipenv()
-  end,
+vim.api.nvim_create_user_command("PipenvClearCache", function()
+  require("config.pipenv").clear_cache()
+end, {
+  desc = "Refresh Pipenv environments on the next tool invocation",
 })
 
 -- yaml.ansible filetype
@@ -36,8 +34,31 @@ vim.api.nvim_create_autocmd({ "BufRead", "BufNewFile" }, {
 vim.api.nvim_create_autocmd("BufWritePost", {
   group = augroup("sqlfluff"),
   pattern = { "*.sql" },
-  callback = function()
-    vim.fn.jobstart("pipenv run sqlfluff format " .. vim.api.nvim_buf_get_name(0))
+  callback = function(event)
+    local path = vim.api.nvim_buf_get_name(event.buf)
+    local ok, project = pcall(require("config.pipenv").resolve, path)
+    if not ok then
+      vim.notify(project, vim.log.levels.ERROR)
+      return
+    end
+    local command = project and { project.python, "-m", "sqlfluff", "format", path } or { "sqlfluff", "format", path }
+    vim.system(command, {
+      cwd = project and project.root or vim.fs.dirname(path),
+      env = project and project.env or nil,
+      clear_env = project ~= nil,
+      text = true,
+    }, function(result)
+      vim.schedule(function()
+        if result.code ~= 0 then
+          local detail = vim.trim((result.stderr or "") .. "\n" .. (result.stdout or ""))
+          vim.notify(("SQLFluff formatting failed (exit %d): %s"):format(result.code, detail), vim.log.levels.ERROR)
+        elseif vim.api.nvim_buf_is_valid(event.buf) and not vim.bo[event.buf].modified then
+          vim.api.nvim_buf_call(event.buf, function()
+            vim.cmd("checktime")
+          end)
+        end
+      end)
+    end)
   end,
 })
 

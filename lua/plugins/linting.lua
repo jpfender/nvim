@@ -10,14 +10,24 @@ return {
         json = { "jsonlint" },
         lua = { "luacheck" },
         -- TODO: Checkmake for Makefiles?
-        python = { "pylint" },
         sh = { "shellcheck" },
         yaml = { "yamllint" },
       })
 
-      require("lint").linters.sqlfluff.cmd = "pipenv"
-      require("lint").linters.sqlfluff.args =
-        vim.list_extend({ "run", "sqlfluff" }, require("lint").linters.sqlfluff.args)
+      local lint = require("lint")
+      local default = vim.deepcopy(lint.linters.sqlfluff)
+      default.stream = "both"
+      lint.linters.sqlfluff = function()
+        local linter = vim.deepcopy(default)
+        local project = require("config.pipenv").resolve()
+        if project then
+          linter.cmd = project.python
+          linter.args = vim.list_extend({ "-m", "sqlfluff" }, linter.args or {})
+          linter.cwd = project.root
+          linter.env = project.env
+        end
+        return linter
+      end
     end,
   },
 }

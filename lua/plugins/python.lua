@@ -1,7 +1,6 @@
--- disable
-if true then
-  return {
+return {
+  {
     "jpfender/pipenv.nvim",
-    dependencies = { "nvim-lua/plenary.nvim" },
-  }
-end
+    enabled = false,
+  },
+}
