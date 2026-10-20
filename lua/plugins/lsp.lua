@@ -17,7 +17,6 @@ return {
         "markdownlint",
         "prettier",
         "pydocstyle",
-        "pyright",
         "shellcheck",
         "shfmt",
         "stylua",

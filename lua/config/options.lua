@@ -18,3 +18,6 @@ opt.shortmess:append({ s = true, A = true, F = true })
 
 -- Persist undos
 opt.undofile = true
+
+-- Use ty as Python LSP
+vim.g.lazyvim_python_lsp = "ty"
