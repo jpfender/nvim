@@ -26,6 +26,7 @@ return {
     "ThePrimeagen/refactoring.nvim",
     event = { "BufReadPre", "BufNewFile" },
     dependencies = {
+      "lewis6991/async.nvim",
       "nvim-lua/plenary.nvim",
       "nvim-treesitter/nvim-treesitter",
     },
