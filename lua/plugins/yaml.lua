@@ -1,7 +1,3 @@
--- disable
-if true then
-  return {}
-end
 return {
   {
     "neovim/nvim-lspconfig",
@@ -11,11 +7,26 @@ return {
           settings = {
             yaml = {
               customTags = {
-                "!Equals",
+                "!And sequence",
+                "!Base64",
+                "!Cidr sequence",
+                "!Condition",
+                "!Equals sequence",
+                "!FindInMap sequence",
+                "!GetAZs",
                 "!GetAtt",
-                "!If",
+                "!GetAtt sequence",
+                "!If sequence",
+                "!ImportValue",
+                "!Join sequence",
+                "!Not sequence",
+                "!Or sequence",
                 "!Ref",
+                "!Select sequence",
+                "!Split sequence",
                 "!Sub",
+                "!Sub sequence",
+                "!Transform mapping",
               },
             },
           },
