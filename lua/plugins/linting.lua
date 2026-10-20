@@ -14,6 +14,10 @@ return {
         sh = { "shellcheck" },
         yaml = { "yamllint" },
       })
+
+      require("lint").linters.sqlfluff.cmd = "pipenv"
+      require("lint").linters.sqlfluff.args =
+        vim.list_extend({ "run", "sqlfluff" }, require("lint").linters.sqlfluff.args)
     end,
   },
 }
