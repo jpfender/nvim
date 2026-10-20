@@ -6,7 +6,7 @@ return {
         groovy = { "npm-groovy-lint" },
         lua = { "stylua" },
         markdown = { "prettier" },
-        python = { "ruff_fix", "black" },
+        python = { "ruff_fix", "ruff_format" },
         sh = { "shfmt" },
         sql = {},
         terraform = { "terraform_fmt" },
